@@ -17,9 +17,5 @@ public class Main {
         System.out.println("Saindo... " + minhaPilha.pop());
 
         System.out.println(minhaPilha);
-
-        min
-
-
     }
 }
