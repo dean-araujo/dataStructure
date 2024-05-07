@@ -8,11 +8,11 @@ public class ListaEncadeada<T> {
         this.refNoEntradaFila = null;
     }
 
-    private boolean isEmpty() {
+    public boolean isEmpty() {
         return refNoEntradaFila == null;
     }
 
-    private Integer size() {
+    public Integer size() {
         Integer tamanhoLista = 0;
         No<T> referenciaAux = refNoEntradaFila;
         while(true) {
@@ -30,7 +30,7 @@ public class ListaEncadeada<T> {
         return tamanhoLista;
     }
 
-    private void add(T conteudo) {
+    public void add(T conteudo) {
         No<T> novoNo = new No<>(conteudo);
         if (this.isEmpty()) {
             refNoEntradaFila = novoNo;
@@ -44,4 +44,22 @@ public class ListaEncadeada<T> {
         noAuxiliar.setProximoNo(novoNo);
     }
 
+    private No<T> getNo(Integer indice){
+        validaIndice(indice);
+        No<T> noAuxiliar = refNoEntradaFila;
+        No<T> noRetorno = null;
+        for (int i = 0; i < indice; i++) {
+            noRetorno = noAuxiliar
+            noAuxiliar = noAuxiliar.getProximoNo();
+        }
+        return noRetorno;
+    }
+
+    public void validaIndice(Integer indice) {
+        if(indice >= size()) {
+            int ultimoIndice = size() - 1;
+            throw new IndexOutOfBoundsException("Não existe conteúdo no índice " + indice
+                    + "dessa lista. Esta lista só vai até o índice " + ultimoIndice + ".");
+        }
+    }
 }
