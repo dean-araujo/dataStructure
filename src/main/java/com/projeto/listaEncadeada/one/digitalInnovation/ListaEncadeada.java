@@ -2,23 +2,23 @@ package com.projeto.listaEncadeada.one.digitalInnovation;
 
 public class ListaEncadeada<T> {
 
-    private No<T> refNoEntradaFila;
+    private No<T> refNoEntrada;
 
     public ListaEncadeada() {
-        this.refNoEntradaFila = null;
+        this.refNoEntrada = null;
     }
 
     public boolean isEmpty() {
-        return refNoEntradaFila == null;
+        return refNoEntrada == null;
     }
 
     public Integer size() {
         Integer tamanhoLista = 0;
-        No<T> referenciaAux = refNoEntradaFila;
+        No<T> referenciaAux = refNoEntrada;
         while(true) {
             if(referenciaAux != null) {
                 tamanhoLista++;
-                if (refNoEntradaFila.getProximoNo() != null) {
+                if (refNoEntrada.getProximoNo() != null) {
                     referenciaAux = referenciaAux.getProximoNo();
                 } else {
                     break;
@@ -33,11 +33,11 @@ public class ListaEncadeada<T> {
     public void add(T conteudo) {
         No<T> novoNo = new No<>(conteudo);
         if (this.isEmpty()) {
-            refNoEntradaFila = novoNo;
+            refNoEntrada = novoNo;
             return;
         }
 
-        No<T> noAuxiliar = refNoEntradaFila;
+        No<T> noAuxiliar = refNoEntrada;
         for (int i = 0; i < this.size()-1; i++) {
             noAuxiliar = noAuxiliar.getProximoNo();
         }
@@ -46,13 +46,29 @@ public class ListaEncadeada<T> {
 
     private No<T> getNo(Integer indice){
         validaIndice(indice);
-        No<T> noAuxiliar = refNoEntradaFila;
+        No<T> noAuxiliar = refNoEntrada;
         No<T> noRetorno = null;
         for (int i = 0; i < indice; i++) {
-            noRetorno = noAuxiliar
+            noRetorno = noAuxiliar;
             noAuxiliar = noAuxiliar.getProximoNo();
         }
         return noRetorno;
+    }
+
+    public T remove(Integer indice) {
+        No<T> noPivor = this.getNo(indice);
+        if (indice == 0) {
+            refNoEntrada = noPivor.getProximoNo();
+            return noPivor.getConteudo();
+        }
+
+        No<T> noAnterior = getNo(indice - 1);
+        noAnterior.setProximoNo(noPivor.getProximoNo());
+        return noPivor.getConteudo();
+    }
+
+    public T get(int indice) {
+        return getNo(indice).getConteudo();
     }
 
     public void validaIndice(Integer indice) {
