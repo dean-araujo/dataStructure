@@ -25,7 +25,7 @@ public class ListaDuplamenteEncadeada<T> {
 
     private NoDuplo<T> getNo(int index) {
         NoDuplo<T> noAuxiliar = primeiroNo;
-        for (int i = 0; (i < index) || (noAuxiliar != null); i++) {
+        for (int i = 0; (i < index) && (noAuxiliar != null); i++) {
             noAuxiliar = noAuxiliar.getNoProximo();
         }
         return noAuxiliar;
