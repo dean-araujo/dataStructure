@@ -78,4 +78,16 @@ public class ListaEncadeada<T> {
                     + "dessa lista. Esta lista só vai até o índice " + ultimoIndice + ".");
         }
     }
+
+    @Override
+    public String toString() {
+        String strRetorno = "";
+        No<T> noAuxiliar = refNoEntrada;
+        for (int i = 0; i < this.size(); i++){
+            strRetorno += "[No{conteudo= " + noAuxiliar.getConteudo() + "}]--->";
+            noAuxiliar = noAuxiliar.getProximoNo();
+        }
+        strRetorno += "null";
+        return strRetorno;
+    }
 }
