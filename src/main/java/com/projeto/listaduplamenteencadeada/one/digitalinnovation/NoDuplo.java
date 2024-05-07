@@ -6,7 +6,7 @@ public class NoDuplo<T> {
     private NoDuplo<T> noProximo;
     private NoDuplo noPrevio;
 
-    public void noDuplo(T conteudo) {
+    public NoDuplo(T conteudo) {
         this.conteudo = conteudo;
     }
 
